@@ -38,6 +38,8 @@ export default function CartPage() {
         },
       });
 
+      if (!data?.createOrder?.id) throw new Error('Failed to create order');
+
       // If Admin/Manager and payment method selected → auto checkout
       if (['ADMIN', 'MANAGER'].includes(user?.role ?? '') && selectedPaymentId) {
         await checkoutOrder({
